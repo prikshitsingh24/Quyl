@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F6F8FA;
+  --foreground: #FFFFFF;
+  --dashboardText: #6F767E;
+  --usernameText: #05162E;
+  --dropdownBackground: #E9EDF1;
+  --dropdownText: #3F526E;
+  --tableBorderColor: #EAEAEA;
+  --tableHeadingColor: #000000;
+
+
+}
+
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+}
