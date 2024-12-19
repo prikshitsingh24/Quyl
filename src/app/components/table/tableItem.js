@@ -1,6 +1,4 @@
 import Image from "next/image";
-import statusGreen from "../../../../public/statusGreen.png";
-import statusRed from "../../../../public/statusRed.png"
 
 export default function TableItem(){
     return(
@@ -28,7 +26,7 @@ export default function TableItem(){
                     17,Nov,2024 4:16 PM
                 </div>
                 <div className="border-b-[1px] text-[12px] pb-5 pt-5 ml-3 border-tableBorderColor">
-                <Image src={statusGreen} alt="statusGreen"></Image>
+                <Image src={"/statusGreen.png"} alt="statusGreen" width={14.4} height={14}></Image>
                 </div>
                 <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                     Anshuman Kashyap
@@ -53,7 +51,7 @@ export default function TableItem(){
                     17,Nov,2024 4:16 PM
                 </div>
                 <div className="border-b-[1px] text-[12px] pb-5 pt-5 ml-3 border-tableBorderColor">
-                <Image src={statusRed} alt="statusRed"></Image>
+                <Image src={"/statusRed.png"} alt="statusRed" width={14.4} height={14}></Image>
                 </div>
                 <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                     Anshuman Kashyap
@@ -78,7 +76,7 @@ export default function TableItem(){
                     17,Nov,2024 4:16 PM
                 </div>
                 <div className="border-b-[1px] text-[12px] pb-5 pt-5 ml-3 border-tableBorderColor">
-                <Image src={statusGreen} alt="statusGreen"></Image>
+                <Image src={"/statusGreen.png"} alt="statusGreen" width={14.4} height={14}></Image>
                 </div>
         
         </>
