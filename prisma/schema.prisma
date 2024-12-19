@@ -15,9 +15,10 @@ datasource db {
 
 model Student {
   studentId String @id @default(uuid())
-  cohort Cohort?
+  studentName String
+  cohort String
   dateJoined DateTime @default(now())
-  lastLogin DateTime
+  status String
 }
 
 model Course {
@@ -30,6 +31,6 @@ model Cohort {
   cohortId String @id @default(uuid())
   cohortName String @unique
   courses Course[]
-  student Student @relation(fields: [cohortId],references: [studentId])
+  // student Student @relation(fields: [cohortId],references: [studentId])
 }
 

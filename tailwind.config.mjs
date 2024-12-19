@@ -15,7 +15,8 @@ export default {
         dropdownBackground:"var(--dropdownBackground)",
         dropdownText:"var(--dropdownText)",
         tableBorderColor:"var(--tableBorderColor)",
-        tableHeadingColor:"var(--tableHeadingColor)"
+        tableHeadingColor:"var(--tableHeadingColor)",
+        sidebarHoverTextColor:"var(--sidebarHoverTextColor)"
       },
       fontFamily: {
         noto: ['Noto Sans'], 
