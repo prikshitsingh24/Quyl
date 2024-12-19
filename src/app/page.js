@@ -51,7 +51,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col">
         <div className="h-[48px] w-full mt-5 flex flex-row justify-between">
-          <div className="w-[700px] h-full flex flex-row items-center bg-foreground rounded-[12px] pl-4">
+          <div className="w-[750px] h-full flex flex-row items-center bg-foreground rounded-[12px] pl-4">
            <Image src={"/search.png"} className="h-[18px]" width={18} height={18}  alt="searchIcon"></Image>
            <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2"/>
           </div>
