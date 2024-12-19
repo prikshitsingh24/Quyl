@@ -39,6 +39,8 @@ export default function AddNewStudent() {
           setStatus('')
           handleStudentAdded();
           router.back();
+        }else{
+          setLoading(false);
         }
     }
   }
