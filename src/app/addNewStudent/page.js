@@ -1,6 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { useStore } from '../store';
 
 export default function AddNewStudent() {
     const date = Date()
@@ -11,6 +12,7 @@ export default function AddNewStudent() {
   const [status, setStatus] = useState('');
   const [loading,setLoading] = useState(false);
   const router = useRouter();
+  const handleStudentAdded = useStore((state)=>state.handleStudentAdded);
 
   // onChange handlers
   const handleStudentNameChange = (e) => setStudentName(e.target.value);
@@ -35,9 +37,8 @@ export default function AddNewStudent() {
           setCohort('');
           setCourse('');
           setStatus('')
+          handleStudentAdded();
           router.back();
-        
-
         }
     }
   }
