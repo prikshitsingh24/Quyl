@@ -1,4 +1,5 @@
 "use client"
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 export default function AddNewStudent() {
@@ -8,6 +9,8 @@ export default function AddNewStudent() {
   const [course, setCourse] = useState('');
   const [dateJoined, setDateJoined] = useState(date.toString());
   const [status, setStatus] = useState('');
+  const [loading,setLoading] = useState(false);
+  const router = useRouter();
 
   // onChange handlers
   const handleStudentNameChange = (e) => setStudentName(e.target.value);
@@ -16,7 +19,9 @@ export default function AddNewStudent() {
   const handleStatusChange = (e) => setStatus(e.target.value);
 
   const handleAddStudentClick=async()=>{
+    setLoading(true);
     if(!studentName || !cohort || !course || !dateJoined || !status){
+        setLoading(false);
         return;
     }
     else{
@@ -24,8 +29,16 @@ export default function AddNewStudent() {
             method:"POST",
             body:JSON.stringify({studentName,cohort,dateJoined,status})
         })
-        const data = await response.json();
-        console.log(data);
+        if(response.ok){
+          setLoading(false);
+          setStudentName('');
+          setCohort('');
+          setCourse('');
+          setStatus('')
+          router.back();
+        
+
+        }
     }
   }
 
@@ -72,7 +85,7 @@ export default function AddNewStudent() {
           <div>
             <input
               type="text"
-              value={dateJoined}
+              defaultValue={dateJoined}
               className="text-[16px] p-1 rounded-[6px] outline-none"
             />
           </div>
@@ -90,7 +103,7 @@ export default function AddNewStudent() {
         </div>
       </div>
       <div className="flex justify-center mt-10 ">
-        <div className="bg-green-500 p-2 rounded-[6px] text-white cursor-pointer" onClick={handleAddStudentClick}>
+        <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleAddStudentClick}>
           Add student
         </div>
       </div>
