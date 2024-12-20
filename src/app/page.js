@@ -4,7 +4,7 @@ import AddStudentButton from "./components/buttons/AddStudentButton";
 import Alert from "./components/alert/alert";
 
 export default function Home() {
-
+  
   return (
     <div className="h-screen w-full bg-background grid grid-cols-[1fr_6fr] gap-2 text-black">
       <div className="bg-foreground">

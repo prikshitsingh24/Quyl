@@ -31,6 +31,5 @@ model Cohort {
   cohortId String @id @default(uuid())
   cohortName String @unique
   courses Course[]
-  // student Student @relation(fields: [cohortId],references: [studentId])
 }
 

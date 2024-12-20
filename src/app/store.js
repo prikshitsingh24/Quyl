@@ -8,5 +8,9 @@ export const useStore = create((set)=>({
         setTimeout(() => {
             set({ isStudentAdded: false });
           }, 3000);
+    },
+    studentData:[],
+    handleStudentData:(data)=>{
+        set({studentData:data})
     }
 }))

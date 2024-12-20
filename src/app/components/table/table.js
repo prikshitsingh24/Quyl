@@ -1,6 +1,21 @@
+"use client"
 import TableItem from "./tableItem"
+import { useStore } from "@/app/store";
+import { useEffect } from "react";
 
 export default function Table(){
+    const handleStudentData = useStore((state) => state.handleStudentData);
+
+    useEffect(()=>{
+       const handleTableData=async()=>{
+        const response = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/getStudent`);
+        const studentData = await response.json();
+        handleStudentData(studentData.data);
+       }
+       handleTableData()
+    },[])
+   
+
     return(
         <div className="h-full w-full mt-[52px]">
             <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr]">
@@ -23,9 +38,7 @@ export default function Table(){
                     Status
                 </div>
             </div>
-            <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center">
              <TableItem/>
-            </div>
         </div>
     )
 }
