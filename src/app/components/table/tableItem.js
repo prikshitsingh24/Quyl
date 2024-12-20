@@ -2,7 +2,7 @@
 import { useStore } from "@/app/store";
 import Image from "next/image";
 
-export default function TableItem({ data }) {
+export default function TableItem() {
     const studentData = useStore((state) => state.studentData);
 
     if (!studentData || studentData.length === 0) {
@@ -14,7 +14,7 @@ export default function TableItem({ data }) {
     }
 
     return (
-        <>
+        <div className="w-full overflow-y-scroll overflow-x-scroll">
             {studentData.map((student, index) => (
                 <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center" key={index}>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
@@ -25,10 +25,10 @@ export default function TableItem({ data }) {
                     </div>
                     <div className="border-b-[1px] text-[12px] pb-4 pt-4 border-tableBorderColor">
                         <div className="flex flex-row items-center">
-                            <div className="mr-20 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
+                            <div className="mr-10 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
                                 CBSE 9 Science
                             </div>
-                            <div className="mr-20 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
+                            <div className=" bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
                                 CBSE 9 Math
                             </div>
                         </div>
@@ -48,6 +48,6 @@ export default function TableItem({ data }) {
                     </div>
                 </div>
             ))}
-        </>
+        </div>
     );
 }

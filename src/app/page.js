@@ -6,7 +6,7 @@ import Alert from "./components/alert/alert";
 export default function Home() {
   
   return (
-    <div className="h-screen w-full bg-background grid grid-cols-[1fr_6fr] gap-2 text-black">
+    <div className="h-screen w-full overflow-hidden bg-background grid grid-cols-[1fr_6fr] gap-2 text-black">
       <div className="bg-foreground">
         <div className="mt-[30px] ml-[12px] mr-[12px] flex flex-col">
         <div className="mb-[30px]">
@@ -54,11 +54,11 @@ export default function Home() {
       </div>
       <div className="flex flex-col">
         <div className="h-[48px] w-full mt-5 flex flex-row justify-between">
-          <div className="w-[750px] h-full flex flex-row items-center bg-foreground rounded-[12px] pl-4">
+          <div className="w-1/2 h-full flex flex-row items-center bg-foreground rounded-[12px] pl-4">
            <Image src={"/search.png"} className="h-[18px]" width={18} height={18}  alt="searchIcon"></Image>
            <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2"/>
           </div>
-          <div className="grid grid-cols-[1fr_1fr_1fr_1fr_3fr] gap-4 items-center mr-10">
+          <div className="grid grid-cols-[2fr_2fr_2fr_2fr_4fr] gap-4 items-center ml-4 mr-10">
             <div className="w-fit">
               <Image src={"/help.png"} alt="helpIcon" width={24} height={24} ></Image>
             </div>
@@ -94,9 +94,9 @@ export default function Home() {
                 </select>
                 </div>
               </div>
+              <Alert/>
               <AddStudentButton/>
             </div>
-            <Alert/>
             <Table/>
           </div>
         </div>

@@ -6,7 +6,7 @@ export default function Alert(){
    
     if(isStudentAdded){
         return(
-            <div className="text-[18px] flex justify-center mt-2">
+            <div className="text-[14px] flex justify-center">
                 <div className="bg-green-500 text-white p-2 rounded-[6px]">
                 Student added successfully!!
                 </div>
