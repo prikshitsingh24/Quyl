@@ -1,9 +1,15 @@
 "use client";
 import { useStore } from "@/app/store";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function TableItem() {
     const studentData = useStore((state) => state.studentData);
+    const router = useRouter();
+
+    const handleTableItemClick=(stduentId)=>{
+        router.push(`/updateStudent/${stduentId}`)
+    }
 
     if (!studentData || studentData.length === 0) {
         return (
@@ -16,7 +22,7 @@ export default function TableItem() {
     return (
         <div className="w-full h-[700px] overflow-y-scroll overflow-x-scroll">
             {studentData.map((student, index) => (
-                <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center" key={index}>
+                <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center cursor-pointer" key={index} onClick={()=>handleTableItemClick(student.studentId)}>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                         {student.studentName}
                     </div>

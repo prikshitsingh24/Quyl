@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useStore } from '../store';
 
 export default function AddNewStudent() {
-    const date = Date()
+  const date = Date()
   const [studentName, setStudentName] = useState('');
   const [cohort, setCohort] = useState('');
   const [course, setCourse] = useState('');
