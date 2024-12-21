@@ -1,5 +1,5 @@
 
-export function dateConverion(date){
+export function dateConversion(date){
     const dateObj = new Date(date);
     // Format the date to "21. Dec. 2024"
     const formattedDate = dateObj.toLocaleDateString("en-GB", {

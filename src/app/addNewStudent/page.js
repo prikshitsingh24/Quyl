@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useStore } from '../store';
+import { dateConversion } from '../helper/dateConversion';
 
 export default function AddNewStudent() {
   const date = Date()
@@ -88,7 +89,8 @@ export default function AddNewStudent() {
           <div>
             <input
               type="text"
-              defaultValue={dateJoined}
+              defaultValue={dateConversion(dateJoined)}
+              
               className="text-[16px] p-1 rounded-[6px] outline-none"
             />
           </div>

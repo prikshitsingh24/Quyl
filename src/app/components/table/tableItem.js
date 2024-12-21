@@ -1,5 +1,5 @@
 "use client";
-import { dateConverion } from "@/app/helper/dateConversion";
+import { dateConversion } from "@/app/helper/dateConversion";
 import { useStore } from "@/app/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -21,7 +21,7 @@ export default function TableItem() {
     }
 
     return (
-        <div className="w-full h-[700px] overflow-y-scroll overflow-x-scroll">
+        <div className="w-full border-b-2 border-black h-[360px] screen-1024:h-[540px] screen-1280:h-[440px] screen-1440:h-[520px] screen-1512:h-[550px] screen-1680:h-[660px] screen-1920:h-[690px] screen-2560:h-[950px] overflow-y-scroll overflow-x-scroll">
             {studentData.map((student, index) => (
                 <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center cursor-pointer" key={index} onClick={()=>handleTableItemClick(student.studentId)}>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
@@ -41,7 +41,7 @@ export default function TableItem() {
                         </div>
                     </div>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
-                        {dateConverion(student.dateJoined)}
+                        {dateConversion(student.dateJoined)}
                     </div>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                         17,Nov,2024 4:16 PM
