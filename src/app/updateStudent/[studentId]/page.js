@@ -63,7 +63,6 @@ export default function UpdateStudent({params}){
                 setStatus(data.details.status)
             }
         }
-        console.log(studentData);
         fetchStudentDetails();
     },[])
 
