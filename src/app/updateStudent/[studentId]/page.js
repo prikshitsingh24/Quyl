@@ -13,6 +13,7 @@ export default function UpdateStudent({params}){
     const [loading,setLoading] = useState(false);
     const router = useRouter();
     const handleStudentUpdated = useStore((state)=>state.handleStudentUpdated);
+    const studentData = useStore((state)=>state.studentData);
 
     const handleStudentNameChange = (e) => setStudentName(e.target.value);
     const handleCohortChange = (e) => setCohort(e.target.value);
@@ -24,6 +25,14 @@ export default function UpdateStudent({params}){
         setLoading(true);
         if(!id || !studentName || !cohort || !status){
           return;
+        }
+        const originalData = studentData.find(student=>student.studentId==id.studentId);
+        if(originalData){
+          if(originalData.studentName==studentName && originalData.cohort==cohort && originalData.status==status ){
+            setLoading(false);
+            return;
+            
+          }
         }
         const response = await fetch(`/api/updateStudentById`,{
             method:"POST",
@@ -54,6 +63,7 @@ export default function UpdateStudent({params}){
                 setStatus(data.details.status)
             }
         }
+        console.log(studentData);
         fetchStudentDetails();
     },[])
 

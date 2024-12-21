@@ -1,4 +1,5 @@
 "use client";
+import { dateConverion } from "@/app/helper/dateConversion";
 import { useStore } from "@/app/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -40,7 +41,7 @@ export default function TableItem() {
                         </div>
                     </div>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
-                        {student.dateJoined}
+                        {dateConverion(student.dateJoined)}
                     </div>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                         17,Nov,2024 4:16 PM
