@@ -7,9 +7,12 @@ import Sidebar from "./components/sidebar/sidebar";
 
 export default function Home() {
   function isPhone() {
-    const userAgent = navigator.userAgent.toLowerCase();
-    // Checks for iPhone, iPod, Android, and some other mobile devices
-    return /iphone|ipod|Android|windows phone|blackberry|mobile/i.test(userAgent);
+    if (typeof window !== "undefined") {
+      const userAgent = navigator.userAgent.toLowerCase();
+      // Checks for iPhone, iPod, Android, and some other mobile devices
+      return /iphone|ipod|Android|windows phone|blackberry|mobile/i.test(userAgent);
+      }
+   
 }
   if(isPhone()){
     return(
