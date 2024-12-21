@@ -8,7 +8,7 @@ export default function Table(){
 
     useEffect(()=>{
        const handleTableData=async()=>{
-        const response = await fetch(`/api/getStudent`);
+        const response = await fetch(`/api/getStudentData`);
         const studentData = await response.json();
         handleStudentData(studentData.data);
        }

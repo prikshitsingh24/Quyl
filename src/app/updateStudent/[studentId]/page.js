@@ -13,6 +13,7 @@ export default function UpdateStudent({params}){
     const [loading,setLoading] = useState(false);
     const router = useRouter();
     const handleStudentUpdated = useStore((state)=>state.handleStudentUpdated);
+    const handleStudentDeleted = useStore((state)=>state.handleStudentDeleted);
     const studentData = useStore((state)=>state.studentData);
 
     const handleStudentNameChange = (e) => setStudentName(e.target.value);
@@ -20,7 +21,7 @@ export default function UpdateStudent({params}){
     const handleCourseChange = (e) => setCourse(e.target.value);
     const handleStatusChange = (e) => setStatus(e.target.value);
     
-    const handleUpdateStudentClick = async()=>{
+    const handleUpdateStudentDataClick = async()=>{
         const id = await params;
         setLoading(true);
         if(!id || !studentName || !cohort || !status){
@@ -34,7 +35,7 @@ export default function UpdateStudent({params}){
             
           }
         }
-        const response = await fetch(`/api/updateStudentById`,{
+        const response = await fetch(`/api/updateStudentDataById`,{
             method:"POST",
             body:JSON.stringify({studentId:id.studentId,studentName,cohort,dateJoined,status})
         })
@@ -49,10 +50,31 @@ export default function UpdateStudent({params}){
         }
     }
 
+
+    const handleDeleteStudentDataClick=async()=>{
+      const id = await params;
+      setLoading(true);
+        if(!id){
+          return;
+        }
+        const response = await fetch(`/api/deleteStudentDataById`,{
+            method:"POST",
+            body:JSON.stringify({studentId:id.studentId})
+        })
+        if(response.ok){
+            setLoading(false);
+            handleStudentDeleted();
+            router.back();
+       
+        }else{
+          setLoading(false);
+        }
+    }
+
     useEffect(()=>{
         const fetchStudentDetails=async()=>{
             const id = await params;
-            const response = await fetch(`/api/getStudentById`,{
+            const response = await fetch(`/api/getStudentDataById`,{
                 method:"POST",
                 body:JSON.stringify({studentId:id.studentId})
             })
@@ -128,10 +150,14 @@ export default function UpdateStudent({params}){
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-10 ">
-          <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentClick}>
-            Update student
+        <div className="flex justify-center mt-14 ">
+        <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] mr-10 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
+            Delete student Data
           </div>
+          <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
+            Update student Data
+          </div>
+       
         </div>
       </div>
     );

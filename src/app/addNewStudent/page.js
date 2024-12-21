@@ -20,14 +20,14 @@ export default function AddNewStudent() {
   const handleCourseChange = (e) => setCourse(e.target.value);
   const handleStatusChange = (e) => setStatus(e.target.value);
 
-  const handleAddStudentClick=async()=>{
+  const handleAddStudentDataClick=async()=>{
     setLoading(true);
     if(!studentName || !cohort || !course || !dateJoined || !status){
         setLoading(false);
         return;
     }
     else{
-        const response = await fetch("/api/addStudent",{
+        const response = await fetch("/api/addStudentData",{
             method:"POST",
             body:JSON.stringify({studentName,cohort,dateJoined,status})
         })
@@ -106,7 +106,7 @@ export default function AddNewStudent() {
         </div>
       </div>
       <div className="flex justify-center mt-10 ">
-        <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleAddStudentClick}>
+        <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleAddStudentDataClick}>
           Add student
         </div>
       </div>

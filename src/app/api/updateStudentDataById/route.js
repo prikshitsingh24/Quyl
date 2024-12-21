@@ -23,5 +23,5 @@ export async function POST(req){
     }catch(error){
         return NextResponse.json({message:error}, { status: 400 })
     }
-    return NextResponse.json({message:`${studentName}\n${cohort}\n${dateJoined}\n${status}`})
+    return NextResponse.json({message:"Student added successfully"},{status: 200})
 }

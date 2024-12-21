@@ -7,7 +7,7 @@ export async function GET(req){
         const data = await prisma.student.findMany({orderBy:{
             dateJoined:'desc'
         }});
-        return NextResponse.json({data});
+        return NextResponse.json({data},{status: 200});
     }catch(error){
         return NextResponse.json({message:error}, { status: 400 })
     }
