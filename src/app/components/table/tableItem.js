@@ -14,7 +14,7 @@ export default function TableItem() {
     }
 
     return (
-        <div className="w-full overflow-y-scroll overflow-x-scroll">
+        <div className="w-full h-[700px] overflow-y-scroll overflow-x-scroll">
             {studentData.map((student, index) => (
                 <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] items-center" key={index}>
                     <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
