@@ -2,9 +2,13 @@ import { create } from "zustand";
 
 
 export const useStore = create((set)=>({
+    isPhone:false,
     isStudentAdded:false,
     isStudentUpdated:false,
     isStudentDeleted:false,
+    handleIsPhoneStatus:()=>{
+        set({isPhone:true})
+    },
     handleStudentAdded: ()=>{
         set({isStudentAdded:true});
         setTimeout(() => {

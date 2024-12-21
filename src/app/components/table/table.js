@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export default function Table(){
     const handleStudentData = useStore((state) => state.handleStudentData);
-
+    console.log(navigator.userAgent);
     useEffect(()=>{
        const handleTableData=async()=>{
         const response = await fetch(`/api/getStudentData`);
@@ -14,7 +14,8 @@ export default function Table(){
        }
        handleTableData()
     },[])
-   
+    
+    
 
     return(
         <div className="h-full w-full mt-[52px]">
