@@ -13,7 +13,6 @@ export default function Dashboard(){
     const handleIsPhoneStatus = useStore((state)=>state.handleIsPhoneStatus);
     const [sidebarOpen, setSidebarOpen] = useState(false); 
     const sidebarRef = useRef(null);
-    const sidebarMenuRef = useRef(null)
     
     useEffect(() => {
         const handleIsPhoneCheck=()=>{

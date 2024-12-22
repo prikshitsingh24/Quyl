@@ -11,7 +11,8 @@ export default function UpdateStudent({params}){
     const [course, setCourse] = useState('');
     const [dateJoined, setDateJoined] = useState(date.toString());
     const [status, setStatus] = useState('');
-    const [loading,setLoading] = useState(false);
+    const [updateLoading,setUpdateLoading] = useState(false);
+    const [deleteLoading,setDeleteLoading] = useState(false);
     const router = useRouter();
     const handleStudentUpdated = useStore((state)=>state.handleStudentUpdated);
     const handleStudentDeleted = useStore((state)=>state.handleStudentDeleted);
@@ -25,14 +26,14 @@ export default function UpdateStudent({params}){
     
     const handleUpdateStudentDataClick = async()=>{
         const id = await params;
-        setLoading(true);
+        setUpdateLoading(true);
         if(!id || !studentName || !cohort || !status){
           return;
         }
         const originalData = studentData.find(student=>student.studentId==id.studentId);
         if(originalData){
           if(originalData.studentName==studentName && originalData.cohort==cohort && originalData.status==status ){
-            setLoading(false);
+            setUpdateLoading(false);
             return;
             
           }
@@ -43,19 +44,19 @@ export default function UpdateStudent({params}){
         })
         if(response.ok){
             const data = await response.json();
-            setLoading(false);
+            setUpdateLoading(false);
             handleStudentUpdated();
             router.back();
        
         }else{
-          setLoading(false);
+          setUpdateLoading(false);
         }
     }
 
 
     const handleDeleteStudentDataClick=async()=>{
       const id = await params;
-      setLoading(true);
+      setDeleteLoading(true);
         if(!id){
           return;
         }
@@ -64,12 +65,12 @@ export default function UpdateStudent({params}){
             body:JSON.stringify({studentId:id.studentId})
         })
         if(response.ok){
-            setLoading(false);
+            setDeleteLoading(false);
             handleStudentDeleted();
             router.back();
        
         }else{
-          setLoading(false);
+          setDeleteLoading(false);
         }
     }
 
@@ -155,19 +156,19 @@ export default function UpdateStudent({params}){
         </div>
      {isPhone?(
          <div className={`flex-col justify-center mt-14 `}>
-               <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 mb-10 w-52 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
+               <div className={`${updateLoading?'bg-gray-500':'bg-blue-500'} p-2 mb-10 w-52 rounded-[6px] text-white cursor-pointer`} onClick={updateLoading?()=>{}:handleUpdateStudentDataClick}>
              Update student Data
            </div>
-         <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] w-52 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
+         <div className={`${deleteLoading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] w-52 text-white cursor-pointer`} onClick={deleteLoading?()=>{}:handleDeleteStudentDataClick}>
              Delete student Data
            </div>
          </div>
      ):(
       <div className={`flex justify-center mt-14 `}>
-      <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] mr-10 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
+      <div className={`${updateLoading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] mr-10 text-white cursor-pointer`} onClick={updateLoading?()=>{}:handleDeleteStudentDataClick}>
           Delete student Data
         </div>
-        <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
+        <div className={`${deleteLoading?'bg-gray-500':'bg-blue-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={deleteLoading?()=>{}:handleUpdateStudentDataClick}>
           Update student Data
         </div>
      
