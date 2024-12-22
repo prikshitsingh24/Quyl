@@ -1,11 +1,13 @@
+"use client"
+import dynamic from 'next/dynamic';
 
-import Dashboard from "./components/dashboard/dashboard";
 
- 
-
+const ClientOnlyComponent = dynamic(() => import('./components/dashboard/dashboard'), {
+  ssr: false,
+});
 
 export default function Home() {
     return (
-      <Dashboard/>
+      <ClientOnlyComponent/>
     );
 }
