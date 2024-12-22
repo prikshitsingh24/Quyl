@@ -5,14 +5,17 @@ import AddStudentButton from "./components/buttons/AddStudentButton";
 import Alert from "./components/alert/alert";
 import Sidebar from "./components/sidebar/sidebar";
 import { useState,useEffect } from "react";
-import { platform } from 'os';
-
+import dynamic from 'next/dynamic'
+ 
+const DynamicComponentWithNoSSR = dynamic(
+  () => import('./page'),
+  { ssr: false }
+)
 
 export default function Home() {
   const [isPhone, setIsPhone] = useState(false);
 
   useEffect(() => {
-      if (platform() !== 'browser') return;
       if (typeof navigator !== "undefined") {
           const userAgent = navigator.userAgent.toLowerCase();
           setIsPhone(/iphone|ipod|android|windows phone|blackberry|mobile/i.test(userAgent));
@@ -22,6 +25,7 @@ export default function Home() {
   if(isPhone){
     return(
       <div className={`h-screen w-screen overflow-x-hidden overflow-y-hidden bg-background text-black`}>
+        <DynamicComponentWithNoSSR />
        {/* <Sidebar/> */}
       <div className="flex flex-col">
         <div className="h-[48px] w-full mt-5 flex flex-row justify-start items-center">
