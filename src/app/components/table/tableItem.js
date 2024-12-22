@@ -26,7 +26,7 @@ export default function TableItem() {
           <>
                 {studentData.map((student, index) => (
                     <div
-                        className="grid grid-cols-[3fr_2.7fr_6fr_2.4fr_3fr_1fr] items-center cursor-pointer min-w-max"
+                        className="grid grid-cols-[3fr_2.7fr_6fr_2.4fr_3fr_1fr]  hover:bg-gray-50  text-dashboardText hover:text-sidebarHoverTextColor items-center cursor-pointer min-w-max"
                         key={index}
                         onClick={() => handleTableItemClick(student.studentId)}
                     >
