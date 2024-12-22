@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useStore } from '../../store';
 import { useEffect, useState } from 'react';
+import { dateConversion } from '@/app/helper/dateConversion';
 
 export default function UpdateStudent({params}){
     const date = Date()
@@ -15,6 +16,7 @@ export default function UpdateStudent({params}){
     const handleStudentUpdated = useStore((state)=>state.handleStudentUpdated);
     const handleStudentDeleted = useStore((state)=>state.handleStudentDeleted);
     const studentData = useStore((state)=>state.studentData);
+    const isPhone = useStore((state)=>state.isPhone);
 
     const handleStudentNameChange = (e) => setStudentName(e.target.value);
     const handleCohortChange = (e) => setCohort(e.target.value);
@@ -133,8 +135,9 @@ export default function UpdateStudent({params}){
             <div>
               <input
                 type="text"
-                defaultValue={dateJoined}
+                defaultValue={dateConversion(dateJoined)}
                 className="text-[16px] p-1 rounded-[6px] outline-none"
+                readOnly
               />
             </div>
           </div>
@@ -150,15 +153,26 @@ export default function UpdateStudent({params}){
             </div>
           </div>
         </div>
-        <div className="flex justify-center mt-14 ">
-        <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] mr-10 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
-            Delete student Data
-          </div>
-          <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
-            Update student Data
-          </div>
-       
+     {isPhone?(
+         <div className={`flex-col justify-center mt-14 `}>
+               <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 mb-10 w-52 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
+             Update student Data
+           </div>
+         <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] w-52 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
+             Delete student Data
+           </div>
+         </div>
+     ):(
+      <div className={`flex justify-center mt-14 `}>
+      <div className={`${loading?'bg-gray-500':'bg-red-500'} p-2 rounded-[6px] mr-10 text-white cursor-pointer`} onClick={loading?()=>{}:handleDeleteStudentDataClick}>
+          Delete student Data
         </div>
+        <div className={`${loading?'bg-gray-500':'bg-blue-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleUpdateStudentDataClick}>
+          Update student Data
+        </div>
+     
+      </div>
+     )}
       </div>
     );
 }

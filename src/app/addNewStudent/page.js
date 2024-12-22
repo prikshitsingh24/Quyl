@@ -90,7 +90,7 @@ export default function AddNewStudent() {
             <input
               type="text"
               defaultValue={dateConversion(dateJoined)}
-              
+              readOnly
               className="text-[16px] p-1 rounded-[6px] outline-none"
             />
           </div>
@@ -108,7 +108,7 @@ export default function AddNewStudent() {
         </div>
       </div>
       <div className="flex justify-center mt-10 ">
-        <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2 rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleAddStudentDataClick}>
+        <div className={`${loading?'bg-gray-500':'bg-green-500'} p-2  w-52 flex justify-center rounded-[6px] text-white cursor-pointer`} onClick={loading?()=>{}:handleAddStudentDataClick}>
           Add student
         </div>
       </div>
