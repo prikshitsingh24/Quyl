@@ -5,12 +5,14 @@ import AddStudentButton from "./components/buttons/AddStudentButton";
 import Alert from "./components/alert/alert";
 import Sidebar from "./components/sidebar/sidebar";
 import { useState,useEffect } from "react";
+import { platform } from 'os';
+
 
 export default function Home() {
   const [isPhone, setIsPhone] = useState(false);
 
   useEffect(() => {
-      // This will run only on the client side
+      if (platform() !== 'browser') return;
       if (typeof navigator !== "undefined") {
           const userAgent = navigator.userAgent.toLowerCase();
           setIsPhone(/iphone|ipod|android|windows phone|blackberry|mobile/i.test(userAgent));
