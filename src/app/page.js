@@ -7,11 +7,11 @@ import Sidebar from "./components/sidebar/sidebar";
 
 export default function Home() {
   function isPhone() {
-    if (typeof window !== "undefined") {
+    if (typeof navigator !== "undefined") {
       const userAgent = navigator.userAgent.toLowerCase();
       // Checks for iPhone, iPod, Android, and some other mobile devices
       return /iphone|ipod|Android|windows phone|blackberry|mobile/i.test(userAgent);
-      }
+    }
    
 }
   if(isPhone()){
