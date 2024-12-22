@@ -4,11 +4,20 @@ import Table from "./components/table/table"
 import AddStudentButton from "./components/buttons/AddStudentButton";
 import Alert from "./components/alert/alert";
 import Sidebar from "./components/sidebar/sidebar";
-import { isPhone } from "./helper/isPhone";
+import { useState,useEffect } from "react";
 
 export default function Home() {
+  const [isPhone, setIsPhone] = useState(false);
 
-  if(isPhone()){
+  useEffect(() => {
+      // This will run only on the client side
+      if (typeof navigator !== "undefined") {
+          const userAgent = navigator.userAgent.toLowerCase();
+          setIsPhone(/iphone|ipod|android|windows phone|blackberry|mobile/i.test(userAgent));
+      }
+  }, []);
+
+  if(isPhone){
     return(
       <div className={`h-screen w-screen overflow-x-hidden overflow-y-hidden bg-background text-black`}>
        {/* <Sidebar/> */}
