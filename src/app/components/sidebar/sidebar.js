@@ -2,10 +2,10 @@
 import { useStore } from "@/app/store";
 import Image from "next/image";
 
-export default function Sidebar({ref}){
+export default function Sidebar(){
   const isPhone = useStore((state)=>state.isPhone);
     return(
-        <div ref={ref} className="bg-foreground">
+        <div className="bg-foreground">
         <div className="mt-[30px] ml-[12px] mr-[12px] flex flex-col">
         <div className="mb-[30px]">
         <Image src={"/logo.png"} alt="logoIcon" width={98} height={42} ></Image>

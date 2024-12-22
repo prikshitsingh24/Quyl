@@ -52,7 +52,7 @@ export default function Dashboard(){
    if(isPhone){
     return(
         <div className={`h-screen w-screen overflow-x-hidden overflow-y-hidden bg-background text-black`}>
-       <div className={`transition-transform duration-300 bg-black ease-in-out fixed top-20 left-0 h-full w-40 bg-foreground shadow-lg  ${sidebarOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>   
+       <div className={`transition-transform duration-300 z-10 ease-in-out fixed top-20 left-0 h-full w-40 bg-foreground shadow-lg  ${sidebarOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>   
         <Sidebar/>
        </div>
       <div className="flex flex-col">
