@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 export default function TableItem() {
     const studentData = useStore((state) => state.studentData);
     const router = useRouter();
+    const isPhone = useStore((state)=>state.isPhone);
 
     const handleTableItemClick=(stduentId)=>{
         router.push(`/updateStudent/${stduentId}`)
@@ -20,13 +21,7 @@ export default function TableItem() {
         );
     }
 
-    function isPhone() {
-        const userAgent = navigator.userAgent.toLowerCase();
-        // Checks for iPhone, iPod, Android, and some other mobile devices
-        return /iphone|ipod|Android|windows phone|blackberry|mobile/i.test(userAgent);
-    }
-
-    if(isPhone()){   
+    if(isPhone){   
         return (
         <div className="w-screen overflow-y-scroll overflow-x-scroll">
             {studentData.map((student, index) => (

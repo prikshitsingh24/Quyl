@@ -1,9 +1,11 @@
-
+"use client"
+import { useStore } from "@/app/store";
 import Image from "next/image";
 
-export default function Sidebar(){
+export default function Sidebar({ref}){
+  const isPhone = useStore((state)=>state.isPhone);
     return(
-        <div className="bg-foreground">
+        <div ref={ref} className="bg-foreground">
         <div className="mt-[30px] ml-[12px] mr-[12px] flex flex-col">
         <div className="mb-[30px]">
         <Image src={"/logo.png"} alt="logoIcon" width={98} height={42} ></Image>
@@ -45,6 +47,22 @@ export default function Sidebar(){
             Settings
           </div>
           </div>
+          {isPhone && (
+            <>
+            <div className="flex flex-row h-[48px] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor cursor-pointer items-center pl-2 rounded-[6px]">
+            <Image src={"/message.png"} className="h-[18px] w-[18px] mr-2" alt="messageIcon" width={18} height={18} ></Image>
+            <div className="font-semibold">
+              Message
+            </div>
+            </div>
+            <div className="flex flex-row h-[48px] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor cursor-pointer items-center pl-2 rounded-[6px]">
+            <Image src={"/notification.png"} className="h-[18px] w-[18px] mr-2" alt="notificationIcon" width={18} height={18} ></Image>
+            <div className="font-semibold">
+              Message
+            </div>
+            </div>
+            </>
+          )}
         </div>
         </div>
       </div>

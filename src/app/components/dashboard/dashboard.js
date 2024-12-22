@@ -4,43 +4,66 @@ import Table from "../table/table"
 import AddStudentButton from "../buttons/AddStudentButton";
 import Alert from "../alert/alert";
 import Sidebar from "../sidebar/sidebar";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
+import { useStore } from "@/app/store";
  
 
 export default function Dashboard(){
-    const [isPhone, setIsPhone] = useState(false);
-
+    const [isPhone,setIsPhone] = useState(false);
+    const handleIsPhoneStatus = useStore((state)=>state.handleIsPhoneStatus);
+    const [sidebarOpen, setSidebarOpen] = useState(false); 
+    const sidebarRef = useRef(null);
+    const sidebarMenuRef = useRef(null)
+    
     useEffect(() => {
-        if (typeof navigator !== "undefined") {
-            const userAgent = navigator.userAgent.toLowerCase();
-            setIsPhone(/iphone|ipod|android|windows phone|blackberry|mobile/i.test(userAgent));
+        const handleIsPhoneCheck=()=>{
+            if (typeof navigator !== "undefined") {
+                const userAgent = navigator.userAgent.toLowerCase();
+                const isPhoneDevice = /iphone|ipod|android|windows phone|blackberry|mobile/i.test(userAgent);
+                const isSmallScreen = window.innerWidth < 800;
+
+                return (isPhoneDevice || isSmallScreen)
+            }
         }
+        if(handleIsPhoneCheck()){
+            setIsPhone(true);
+            handleIsPhoneStatus();
+        }else{
+            return
+        }
+        const handleClickOutside = (event) => {
+            if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+              setSidebarOpen(false); 
+            }
+          };
+      
+          document.addEventListener('click', handleClickOutside);
+          
+      
+          return () => {
+            document.removeEventListener('click', handleClickOutside);
+          };
     }, []);
+
+    const toggleSidebar = () => {
+        setSidebarOpen(!sidebarOpen); // Toggle sidebar state
+      };
 
    if(isPhone){
     return(
         <div className={`h-screen w-screen overflow-x-hidden overflow-y-hidden bg-background text-black`}>
-       {/* <Sidebar/> */}
+       <div className={`transition-transform duration-300 bg-black ease-in-out fixed top-0 left-0 h-full w-40 bg-foreground shadow-lg  ${sidebarOpen ? 'transform translate-x-0' : 'transform -translate-x-full'}`}>   
+        <Sidebar/>
+       </div>
       <div className="flex flex-col">
         <div className="h-[48px] w-full mt-5 flex flex-row justify-start items-center">
-          <Image src={"/menu.png"} className="mr-4 ml-2 cursor-pointer" width={32} height={32}  alt="searchIcon"></Image>
+         <div  onClick={toggleSidebar} className="mr-4 ml-2 cursor-pointer">
+         <Image  src={"/menu.png"} width={48} height={32}  alt="searchIcon"></Image>
+         </div>
           <div className=" w-full h-full mr-2 flex flex-row items-center bg-foreground rounded-[12px]">
            <Image src={"/search.png"} className="ml-2" width={18} height={18}  alt="searchIcon"></Image>
            <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2"/>
           </div>
-      
-            {/* <div className="w-fit">
-              <Image src={"/help.png"} alt="helpIcon" width={24} height={24} ></Image>
-            </div>
-            <div>
-            <Image src={"/message.png"} alt="messageIcon" width={24} height={24} ></Image>
-            </div>
-            <div>
-            <Image src={"/setting.png"} alt="settingsIcon" width={24} height={24} ></Image>
-            </div>
-            <div>
-            <Image src={"/notification.png"} alt="notificationIcon" width={24} height={24} ></Image>
-            </div> */}
            <Image src={"/userPic.png"} className="mr-2" alt="userPicIcon" width={80} height={48} ></Image>
         </div>
         <div className="bg-foreground mt-[20px] h-full rounded-[12px] pl-[15px] pr-[15px] pt-[7px] mr-2">

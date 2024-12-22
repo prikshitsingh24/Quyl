@@ -50,7 +50,7 @@ export default function AddNewStudent() {
     <div className="text-black p-2">
       <div className="font-semibold text-[24px]">Add new student</div>
       <hr className="border-1 border-tableBorderColor" />
-      <div className="grid mt-5 grid-cols-5">
+      <div className="grid mt-5 grid-cols-1 gap-5 screen-1024:grid-cols-3 screen-1280:grid-cols-5">
         <div className="relative">
           <div className="text-[12px]">Student name</div>
           <div>
