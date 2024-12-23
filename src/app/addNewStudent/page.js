@@ -67,7 +67,7 @@ export default function AddNewStudent() {
       if (response.ok) {
         const data = await response.json();
         setCohort(data.cohort); // Set cohort data
-        if(data.cohort.length){
+        if(data.cohort.length>0){
           setCohortId(data.cohort[0].cohortId)
         }
       
