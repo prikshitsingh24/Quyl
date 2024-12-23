@@ -9,8 +9,8 @@ export default function TableItem() {
     const router = useRouter();
     const isPhone = useStore((state)=>state.isPhone);
 
-    const handleTableItemClick=(stduentId)=>{
-        router.push(`/updateStudent/${stduentId}`)
+    const handleTableItemClick=(studentId)=>{
+        router.push(`/updateStudent/${studentId}`)
     }
 
     if (!studentData || studentData.length === 0) {
@@ -34,7 +34,7 @@ export default function TableItem() {
                             {student.studentName}
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
-                            {student.cohort}
+                            {student.cohortName}
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-4 pt-4 border-tableBorderColor">
                             <div className="flex flex-row items-center">
@@ -76,16 +76,15 @@ export default function TableItem() {
                             {student.studentName}
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
-                            {student.cohort}
+                            {student.cohortName}
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-4 pt-4 border-tableBorderColor">
                             <div className="flex flex-row items-center">
-                                <div className="mr-10 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
-                                    CBSE 9 Science
+                               {student.subjects.map((subject,index)=>(
+                                 <div className="mr-10 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1" key={index}>
+                                    {subject.courseBoard} {subject.courseClass} {subject.courseSubject}
                                 </div>
-                                <div className=" bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
-                                    CBSE 9 Math
-                                </div>
+                               ))}
                             </div>
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">

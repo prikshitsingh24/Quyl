@@ -1,11 +1,10 @@
-// import { prisma } from "../prisma";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "../prisma";
 import { NextResponse } from "next/server"
 
-const prisma = new PrismaClient();
+
 
 export async function POST(req){
-    const {studentId,studentName,cohort,dateJoined,status}= await req.json();
+    const {studentId, studentName,cohortId,courseId,status}= await req.json();
     try{
        await prisma.student.update({
         where:{
@@ -14,9 +13,10 @@ export async function POST(req){
         data:
         { 
             studentName:studentName,
-            cohort:cohort,
-            dateJoined:new Date(dateJoined),
+            cohortId:cohortId,
+            courseId:courseId,
             status:status
+
         }
     })
 

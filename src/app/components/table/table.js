@@ -2,20 +2,49 @@
 import TableItem from "./tableItem"
 import { useStore } from "@/app/store";
 import { useEffect } from "react";
+import { fetchCohortById } from "@/app/helper/processor";
+import { fetchSubjectsById } from "@/app/helper/processor";
 
 export default function Table(){
     const handleStudentData = useStore((state) => state.handleStudentData);
     const isPhone = useStore((state)=>state.isPhone);
-    
-    console.log(navigator.userAgent);
-    useEffect(()=>{
-       const handleTableData=async()=>{
-        const response = await fetch(`/api/getStudentData`);
-        const studentData = await response.json();
-        handleStudentData(studentData.data);
-       }
-       handleTableData()
-    },[])
+
+    const ProcessStudentData = async (students) => {
+    const updatedStudentData = [];
+
+    // Loop through all students
+    for (let student of students) {
+
+        const cohortName = await fetchCohortById(student.cohortId);
+        
+
+        const subjects = await fetchSubjectsById(student.courseId);
+        
+
+        updatedStudentData.push({
+        studentId:student.studentId,
+        studentName: student.studentName,
+        cohortName: cohortName,  
+        status: student.status,
+        subjects: subjects,
+        dateJoined: student.dateJoined 
+        });
+    }
+        handleStudentData(updatedStudentData);
+    };
+
+    useEffect(() => {
+    const handleTableData = async () => {
+        const response = await fetch('/api/getStudentData');
+        const data = await response.json();
+
+        if (response.ok) {
+        ProcessStudentData(data.studentData);
+        }
+    };
+
+    handleTableData();
+    }, []);
     
     
 

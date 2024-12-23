@@ -16,22 +16,39 @@ datasource db {
 }
 
 model Student {
-  studentId String @id @default(uuid())
+  studentId   String   @id @default(uuid())
   studentName String
-  cohort String
-  dateJoined DateTime @default(now())
-  status String
+  cohortId    String   // This is the foreign key referencing Cohort
+  courseId    String
+  dateJoined  DateTime @default(now())
+  status      String
+  
+  course      Course   @relation(fields: [courseId], references: [courseId])
+  cohort      Cohort   @relation(fields: [cohortId], references: [cohortId]) // Define the relation
 }
 
 model Course {
-  courseId String @id @default(uuid())
-  courseName String @unique
-  cohort Cohort @relation(fields: [courseId], references: [cohortId])
+  courseId    String   @id @default(uuid())
+  subjects    Subject[]
+  cohortId    String   // This is the foreign key referencing Cohort
+  students    Student[]
+  cohort      Cohort   @relation(fields: [cohortId], references: [cohortId]) // Define the relation
 }
 
 model Cohort {
-  cohortId String @id @default(uuid())
-  cohortName String @unique
-  courses Course[]
+  cohortId    String   @id @default(uuid())
+  cohortName  String 
+  students    Student[] // One Cohort has many Students
+  courses     Course[]  // One Cohort has many Courses
 }
 
+
+model Subject{
+  subjectId     String @id @default(uuid())
+  courseBoard   String
+  courseClass   String    
+  courseSubject String
+  courseId      String 
+
+  course      Course    @relation(fields: [courseId],references: [courseId])
+}

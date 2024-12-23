@@ -3,12 +3,13 @@ import { NextResponse } from "next/server"
 
 
 export async function POST(req){
-    const {studentName,cohort,dateJoined,status}= await req.json();
+    const {studentName,cohortId,courseId,dateJoined,status}= await req.json();
     try{
        await prisma.student.create({
         data:{
             studentName:studentName,
-            cohort:cohort,
+            cohortId:cohortId,
+            courseId:courseId,
             dateJoined:new Date(dateJoined),
             status:status
         }
@@ -17,5 +18,5 @@ export async function POST(req){
     }catch(error){
         return NextResponse.json({message:error}, { status: 400 })
     }
-    return NextResponse.json({message:`${studentName}\n${cohort}\n${dateJoined}\n${status}`})
+    return NextResponse.json({message:`${studentName}\n${cohortId}\n${dateJoined}\n${status}`},{status:200})
 }
