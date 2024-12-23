@@ -64,7 +64,7 @@ export default function Sidebar(){
             <Image src={"/notification.png"} className="h-[18px] w-[18px] mr-2" alt="notificationIcon" width={18} height={18} ></Image>
             </div>
             <div className="font-semibold">
-              Message
+              Notification
             </div>
             </div>
             </>
