@@ -105,7 +105,6 @@ export default function UpdateStudent({params}){
           if(response.ok){
               const data = await response.json();
               setStudentName(data.details.studentName);
-              console.log(data.details)
               setCohortId(data.details.cohortId);
               setStatus(data.details.status);
           }
