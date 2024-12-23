@@ -105,14 +105,16 @@ export default function Dashboard(){
              <div className="w-fit">
                <Image src={"/help.png"} alt="helpIcon" width={24} height={24} ></Image>
              </div>
-             <div>
+             <div className="relative">
+             <Image src={"/redDot.png"} className="absolute left-3" alt="redDotIcon" width={11} height={11} ></Image>
              <Image src={"/message.png"} alt="messageIcon" width={24} height={24} ></Image>
              </div>
              <div>
              <Image src={"/setting.png"} alt="settingsIcon" width={24} height={24} ></Image>
              </div>
-             <div>
-             <Image src={"/notification.png"} alt="notificationIcon" width={24} height={24} ></Image>
+             <div className="relative">
+              <Image src={"/redDot.png"} className="absolute left-3" alt="redDotIcon" width={11} height={11} ></Image>
+              <Image src={"/notification.png"} alt="notificationIcon" width={24} height={24} ></Image>
              </div>
              <div className="flex flex-row items-center">
              <Image src={"/userPic.png"} alt="userPicIcon" width={40} height={40} ></Image>
