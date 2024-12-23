@@ -3,6 +3,7 @@ import { dateConversion } from "@/app/helper/dateConversion";
 import { useStore } from "@/app/store";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import Loader from "../loader/loader";
 
 export default function TableItem() {
     const studentData = useStore((state) => state.studentData);
@@ -15,8 +16,8 @@ export default function TableItem() {
 
     if (!studentData || studentData.length === 0) {
         return (
-            <div className="text-center py-4">
-                <p>Fetching data...</p>
+            <div className="h-full flex justify-center items-center pb-20 text-center py-4">
+                <Loader/>
             </div>
         );
     }
