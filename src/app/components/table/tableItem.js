@@ -68,7 +68,7 @@ export default function TableItem() {
             <>
                 {filteredStudents.map((student, index) => (
                     <div
-                        className="grid grid-cols-[3fr_2.7fr_6fr_2.4fr_3fr_1fr] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor items-center cursor-pointer min-w-max"
+                        className="grid grid-cols-[2fr_2fr_6fr_2fr_2fr_1fr] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor items-center cursor-pointer min-w-max"
                         key={index}
                         onClick={() => handleTableItemClick(student.studentId)}
                     >
@@ -80,12 +80,16 @@ export default function TableItem() {
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-4 pt-4 border-tableBorderColor">
                             <div className="flex flex-row items-center">
-                                <div className="mr-2 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
-                                    CBSE 9 Science
+                            {student.subjects.map((subject, index) => (
+                                 <div className="mr-2 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1 flex flex-row items-center" key={index}>
+                                    <div className="mr-2">
+                                    <Image src={`${index/2 == 0?"/teacher1.png":"/teacher2.png"}`} alt="statusGreen" width={20} height={14} />
+                                    </div>
+                                    <div>
+                                    {subject.courseBoard} {subject.courseClass} {subject.courseSubject}
+                                    </div>
                                 </div>
-                                <div className="bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1">
-                                    CBSE 9 Math
-                                </div>
+                               ))}
                             </div>
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">

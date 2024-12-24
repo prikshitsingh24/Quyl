@@ -54,7 +54,7 @@ export default function Table(){
         return (
             <div className="h-full w-full mt-[52px] overflow-x-auto whitespace-nowrap">
                 <div className="">
-                    <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] min-w-max">
+                    <div className="grid grid-cols-[3fr_3fr_9.5fr_3fr_3.5fr_1fr] min-w-max">
                         <div className="border-b-[1px] text-[12px] text-tableHeadingColor font-bold pb-5 border-tableBorderColor">
                             Student Name
                         </div>
