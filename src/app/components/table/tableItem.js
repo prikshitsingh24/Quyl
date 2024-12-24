@@ -73,7 +73,7 @@ export default function TableItem() {
                         onClick={() => handleTableItemClick(student.studentId)}
                     >
                         <div className="border-b-[1px] pl-2 text-[12px] pb-5 pt-5 border-tableBorderColor">
-                            {student.studentName}
+                        {student.studentName.length>10?student.studentName.slice(0,10):student.studentName}
                         </div>
                         <div className="border-b-[1px] text-[12px] pb-5 pt-5 border-tableBorderColor">
                             {student.cohortName}
@@ -109,7 +109,7 @@ export default function TableItem() {
         return (
             <div className="w-full h-[360px] shadow-inner screen-1024:h-[420px] screen-1280:h-[440px] screen-1440:h-[520px] screen-1512:h-[550px] screen-1680:h-[660px] screen-1920:h-[690px] screen-2560:h-[950px] overflow-y-scroll">
                 {filteredStudents.map((student, index) => (
-                    <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor items-center cursor-pointer" key={index} onClick={() => handleTableItemClick(student.studentId)}>
+                    <div className="grid grid-cols-[3fr_3fr_7fr_3fr_3fr_1fr] screen-1440:grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr] hover:bg-gray-50 text-dashboardText hover:text-sidebarHoverTextColor items-center cursor-pointer" key={index} onClick={() => handleTableItemClick(student.studentId)}>
                         <div className="border-b-[1px] pl-2 text-[12px] pb-5 pt-5 border-tableBorderColor">
                             {student.studentName}
                         </div>
@@ -119,8 +119,13 @@ export default function TableItem() {
                         <div className="border-b-[1px] text-[12px] pb-4 pt-4 border-tableBorderColor">
                             <div className="flex flex-row items-center">
                                {student.subjects.map((subject, index) => (
-                                 <div className="mr-10 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1" key={index}>
+                                 <div className="mr-2 bg-background rounded-[6px] pl-2 pr-4 pt-1 pb-1 flex flex-row items-center" key={index}>
+                                    <div className="mr-2">
+                                    <Image src={`${index/2 == 0?"/teacher1.png":"/teacher2.png"}`} alt="statusGreen" width={20} height={14} />
+                                    </div>
+                                    <div>
                                     {subject.courseBoard} {subject.courseClass} {subject.courseSubject}
+                                    </div>
                                 </div>
                                ))}
                             </div>

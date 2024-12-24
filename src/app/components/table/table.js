@@ -86,7 +86,7 @@ export default function Table(){
     else{
         return(
             <div className="h-full w-full mt-[52px]">
-                <div className="grid grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr]">
+                <div className="grid grid-cols-[3fr_3fr_7fr_3fr_3fr_1fr] screen-1440:grid-cols-[3fr_3fr_6fr_3fr_3fr_1fr]">
                     <div className="border-b-[1px] text-[12px] text-tableHeadingColor font-bold pb-5 border-tableBorderColor">
                         Student Name
                     </div>
