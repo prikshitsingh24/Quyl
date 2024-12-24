@@ -111,7 +111,7 @@ export default function Dashboard(){
             <div className="flex flex-col ">
               <div className="flex flex-row mb-4">
                 <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleCohortFilterChange}>
+                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold"  onChange={handleCohortFilterChange}>
                 {cohortData.length>0 && cohortData.map((cohort,index)=>(
                   <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
                 ))}
@@ -174,7 +174,7 @@ export default function Dashboard(){
              <div className="flex flex-row justify-between items-center">
                <div className="flex flex-row">
                  <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleCohortFilterChange}>
+                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold"  onChange={handleCohortFilterChange}>
                  {cohortData.length>0 && cohortData.map((cohort,index)=>(
                   <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
                 ))}

@@ -23,6 +23,8 @@ export default function Table(){
 
         updatedStudentData.push({
         studentId:student.studentId,
+        cohortId:student.cohortId,
+        courseId:student.courseId,
         studentName: student.studentName,
         cohortName: cohortName,  
         status: student.status,

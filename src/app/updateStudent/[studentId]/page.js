@@ -51,7 +51,7 @@ export default function UpdateStudent({params}){
         const originalData = studentData.find(student=>student.studentId==id.studentId);
         console.log(originalData)
         if(originalData){
-          if(originalData.studentName==studentName && !originalData.cohortName==cohortId && originalData.status==status ){
+          if(originalData.studentName==studentName && originalData.cohortId==cohortId && originalData.courseId==courseId && originalData.status==status ){
             setUpdateLoading(false);
             return;
             
