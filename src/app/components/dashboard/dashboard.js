@@ -150,17 +150,17 @@ export default function Dashboard(){
             <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2" onChange={handleSearchChange}/>
            </div>
            <div className="grid grid-cols-[1fr_1fr_1fr_1fr_4fr] screen-1280:grid-cols-[1fr_1fr_1fr_1fr_4fr] screen-1512:grid-cols-[1.5fr_1fr_1.5fr_1.5fr_4fr] screen-1680:grid-cols-[2fr_2fr_2fr_2fr_4fr] gap-4 items-center ml-4 mr-10">
-             <div className="w-fit">
+             <div className="w-fit cursor-pointer">
                <Image src={"/help.png"} alt="helpIcon" width={24} height={24} ></Image>
              </div>
-             <div className="relative">
+             <div className="relative cursor-pointer">
              <Image src={"/redDot.png"} className="absolute left-3" alt="redDotIcon" width={11} height={11} ></Image>
              <Image src={"/message.png"} alt="messageIcon" width={24} height={24} ></Image>
              </div>
-             <div>
+             <div className="cursor-pointer">
              <Image src={"/setting.png"} alt="settingsIcon" width={24} height={24} ></Image>
              </div>
-             <div className="relative">
+             <div className="relative cursor-pointer">
               <Image src={"/redDot.png"} className="absolute left-3" alt="redDotIcon" width={11} height={11} ></Image>
               <Image src={"/notification.png"} alt="notificationIcon" width={24} height={24} ></Image>
              </div>
