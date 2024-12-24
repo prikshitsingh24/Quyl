@@ -29,6 +29,7 @@ model Student {
 
 model Course {
   courseId    String   @id @default(uuid())
+  courseName  String    
   subjects    Subject[]
   cohortId    String   // This is the foreign key referencing Cohort
   students    Student[]
