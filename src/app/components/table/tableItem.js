@@ -29,7 +29,7 @@ export default function TableItem() {
     
             // Check if any of the subjects match the classFilter (combined class and board)
             const matchesClassBoard = student.subjects.some((subject) => {
-                const combinedClassBoard = `${subject.className} ${subject.board} ${subject.courseSubject}`.toLowerCase();
+                const combinedClassBoard = `${subject.courseBoard} ${subject.courseClass} `.toLowerCase();
                 return classFilter
                     ? combinedClassBoard.includes(classFilter.toLowerCase())
                     : true;
