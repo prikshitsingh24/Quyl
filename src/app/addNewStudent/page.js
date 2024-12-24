@@ -96,7 +96,7 @@ export default function AddNewStudent() {
 
   // Fetch Subjects based on Course ID
   const fetchSubjects = async (courseId) => {
-    const response = await fetch('/api/getSubject', {
+    const response = await fetch('/api/getSubjectById', {
       method: 'POST',
       body: JSON.stringify({ courseId })
     });

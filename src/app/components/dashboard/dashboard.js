@@ -13,6 +13,27 @@ export default function Dashboard(){
     const handleIsPhoneStatus = useStore((state)=>state.handleIsPhoneStatus);
     const [sidebarOpen, setSidebarOpen] = useState(false); 
     const sidebarRef = useRef(null);
+    const [cohortData,setCohortData] = useState([]);
+    const [classData,setClassData] = useState([]);
+    const handleCohortFilter = useStore((state)=>state.handleCohortFilter);
+    const handleClassFilter = useStore((state)=>state.handleClassFilter);
+    const handleSearchQuery = useStore((state)=>state.handleSearchQuery);
+
+    const fetchCohortData=async()=>{
+      const response = await fetch('api/getCohort');
+      if(response.ok){
+        const data = await response.json();
+        setCohortData(data.cohort);
+      }
+    }
+    
+    const fetchClassData = async () =>{
+      const response = await fetch('api/getSubject');
+      if(response.ok){
+        const data = await response.json();
+        setClassData(data.courseClass);
+      }
+    }
     
     useEffect(() => {
         const handleIsPhoneCheck=()=>{
@@ -44,9 +65,29 @@ export default function Dashboard(){
           };
     }, []);
 
+
+    useEffect(()=>{
+      fetchClassData();
+      fetchCohortData();
+    },[])
+
     const toggleSidebar = () => {
         setSidebarOpen(!sidebarOpen); // Toggle sidebar state
       };
+
+    
+      const handleClassFilterChange = (e) => {
+        handleClassFilter(e.target.value);
+      }  
+
+
+    const handleCohortFilterChange = (e) => {
+      handleCohortFilter(e.target.value);
+    }
+
+    const handleSearchChange=(e)=>{
+      handleSearchQuery(e.target.value);
+    }
 
    if(isPhone){
     return(
@@ -70,13 +111,17 @@ export default function Dashboard(){
             <div className="flex flex-col ">
               <div className="flex flex-row mb-4">
                 <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold">
-                <option value="AY 2024-25">AY 2024-25</option>
+                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleCohortFilterChange}>
+                {cohortData.length>0 && cohortData.map((cohort,index)=>(
+                  <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
+                ))}
                 </select>
                 </div>
                 <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px]">
-                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold">
-                <option value="CBSE 9">CBSE 9</option>
+                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleClassFilterChange}>
+                {classData.length>0 && classData.map((item,index)=>(
+                  <option value={item.courseClass} key={index}>{item.courseBoard}</option>
+                ))}
                 </select>
                 </div>
               </div>
@@ -99,7 +144,7 @@ export default function Dashboard(){
          <div className="h-[48px] w-full mt-5 flex flex-row justify-between">
            <div className=" w-[300px]  screen-1280:w-1/2 h-full flex flex-row items-center bg-foreground rounded-[12px] pl-4">
             <Image src={"/search.png"} className="h-[18px]" width={18} height={18}  alt="searchIcon"></Image>
-            <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2"/>
+            <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2" onChange={handleSearchChange}/>
            </div>
            <div className="grid grid-cols-[1fr_1fr_1fr_1fr_4fr] screen-1280:grid-cols-[1fr_1fr_1fr_1fr_4fr] screen-1512:grid-cols-[1.5fr_1fr_1.5fr_1.5fr_4fr] screen-1680:grid-cols-[2fr_2fr_2fr_2fr_4fr] gap-4 items-center ml-4 mr-10">
              <div className="w-fit">
@@ -129,13 +174,17 @@ export default function Dashboard(){
              <div className="flex flex-row justify-between items-center">
                <div className="flex flex-row">
                  <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold">
-                 <option value="AY 2024-25">AY 2024-25</option>
+                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleCohortFilterChange}>
+                 {cohortData.length>0 && cohortData.map((cohort,index)=>(
+                  <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
+                ))}
                  </select>
                  </div>
                  <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px]">
-                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold">
-                 <option value="CBSE 9">CBSE 9</option>
+                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleClassFilterChange}>
+                 {classData.length>0 && classData.map((item,index)=>(
+                  <option value={`${item.courseBoard} ${item.courseClass}`} key={index}>{item.courseBoard} {item.courseClass}</option>
+                ))}
                  </select>
                  </div>
                </div>

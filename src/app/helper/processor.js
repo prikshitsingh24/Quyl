@@ -24,7 +24,7 @@ export const fetchCohort = async () => {
 
 
 export const fetchSubjectsById = async (courseId) => {
-const response = await fetch('/api/getSubject', {
+const response = await fetch('/api/getSubjectById', {
     method: 'POST',
     body: JSON.stringify({ courseId })
 });

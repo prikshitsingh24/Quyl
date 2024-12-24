@@ -27,6 +27,18 @@ export const useStore = create((set)=>({
             set({ isStudentDeleted: false });
           }, 3000);
     },
+    searchQuery:"",
+    handleSearchQuery:(data)=>{
+        set({searchQuery:data})
+    },
+    cohortFilter:"",
+    handleCohortFilter:(data)=>{
+        set({cohortFilter:data})
+    },
+    classFilter:"",
+    handleClassFilter:(data)=>{
+        set({classFilter:data})
+    },
     studentData:[],
     handleStudentData:(data)=>{
         set({studentData:data})
