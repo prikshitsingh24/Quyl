@@ -110,20 +110,22 @@ export default function Dashboard(){
           <div className="flex flex-col h-full">
             <div className="flex flex-col ">
               <div className="flex flex-row mb-4">
-                <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold"  onChange={handleCohortFilterChange}>
-                {cohortData.length>0 && cohortData.map((cohort,index)=>(
-                  <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
+              <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] relative">
+                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold appearance-none"  onChange={handleCohortFilterChange}>
+                 {cohortData.length>0 && cohortData.map((cohort,index)=>(
+                  <option  value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
                 ))}
-                </select>
-                </div>
-                <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px]">
-                <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleClassFilterChange}>
-                {classData.length>0 && classData.map((item,index)=>(
-                  <option value={item.courseClass} key={index}>{item.courseBoard}</option>
+                 </select>
+                 <Image src={"/downArrow.png"} className="absolute right-6 top-4 pointer-events-none" alt="userPicIcon" width={15} height={40} ></Image>
+                 </div>
+                 <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px] relative">
+                 <select className="h-full w-full  outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold appearance-none" onChange={handleClassFilterChange}>
+                 {classData.length>0 && classData.map((item,index)=>(
+                  <option value={`${item.courseBoard} ${item.courseClass}`} key={index}>{item.courseBoard} {item.courseClass}</option>
                 ))}
-                </select>
-                </div>
+                 </select>
+                 <Image src={"/downArrow.png"} className="absolute right-6 top-4 pointer-events-none" alt="userPicIcon" width={15} height={40} ></Image>
+                 </div>
               </div>
               <Alert/>
               <AddStudentButton/>
@@ -174,19 +176,21 @@ export default function Dashboard(){
            <div className="flex flex-col h-full">
              <div className="flex flex-row justify-between items-center">
                <div className="flex flex-row">
-                 <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px]">
-                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold"  onChange={handleCohortFilterChange}>
+                 <div className="h-full w-[149px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] relative">
+                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold appearance-none"  onChange={handleCohortFilterChange}>
                  {cohortData.length>0 && cohortData.map((cohort,index)=>(
-                  <option value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
+                  <option  value={cohort.cohortName} key={index}>{cohort.cohortName}</option>
                 ))}
                  </select>
+                 <Image src={"/downArrow.png"} className="absolute right-6 top-4 pointer-events-none" alt="userPicIcon" width={15} height={40} ></Image>
                  </div>
-                 <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px]">
-                 <select className="h-full w-full outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold" onChange={handleClassFilterChange}>
+                 <div className="h-full w-[117px] pr-6 pt-2 pb-2 pl-2 outline-none bg-dropdownBackground rounded-[6px] ml-[15px] relative">
+                 <select className="h-full w-full  outline-none bg-dropdownBackground rounded-[6px] text-dropdownText font-bold appearance-none" onChange={handleClassFilterChange}>
                  {classData.length>0 && classData.map((item,index)=>(
-                  <option value={`${item.courseBoard} ${item.courseClass}`} key={index}>{item.courseBoard} {item.courseClass}</option>
+                  <option  value={`${item.courseBoard} ${item.courseClass}`} key={index}>{item.courseBoard} {item.courseClass}</option>
                 ))}
                  </select>
+                 <Image src={"/downArrow.png"} className="absolute right-6 top-4 pointer-events-none" alt="userPicIcon" width={15} height={40} ></Image>
                  </div>
                </div>
                <Alert/>
