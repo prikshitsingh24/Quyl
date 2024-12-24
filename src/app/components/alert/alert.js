@@ -6,6 +6,7 @@ export default function Alert(){
     const isStudentUpdated = useStore((state)=>state.isStudentUpdated);
     const isStudentDeleted = useStore((state)=>state.isStudentDeleted);
     const isPhone = useStore((state)=>state.isPhone);
+    const updateAlert = useStore((state)=>state.updateAlert)
     if(isStudentAdded){
         return(
           <>
@@ -59,6 +60,27 @@ export default function Alert(){
               <div className="text-[14px] flex justify-center">
               <div className="bg-red-500 text-white p-2 rounded-[6px]">
               Student data deleted successfully!!
+              </div>
+          </div>
+            )}
+            </>
+        )
+    }
+
+
+    if(updateAlert){
+        return(
+            <>
+            {isPhone?(
+               <div className="fixed top-10 left-0 right-0 text-[14px] flex flex-row transition-transform duration-300 z-20 ease-in-out transform translate-y-full justify-center items-center">
+                <div className="bg-red-500 text-white p-2 rounded-[6px] shadow-xl">
+                No field is changed !!
+                </div>
+            </div>
+            ):(
+              <div className="fixed top-10 left-0 right-0 text-[14px] flex flex-row transition-transform duration-400 z-20 ease-in-out transform translate-y-full justify-center items-center">
+              <div className="bg-red-500 text-white p-2 rounded-[6px]">
+              No field is changed !!
               </div>
           </div>
             )}

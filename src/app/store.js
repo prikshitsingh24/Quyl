@@ -6,6 +6,7 @@ export const useStore = create((set)=>({
     isStudentAdded:false,
     isStudentUpdated:false,
     isStudentDeleted:false,
+    updateAlert:false,
     handleIsPhoneStatus:()=>{
         set({isPhone:true})
     },
@@ -25,6 +26,12 @@ export const useStore = create((set)=>({
         set({isStudentDeleted:true});
         setTimeout(() => {
             set({ isStudentDeleted: false });
+          }, 3000);
+    },
+    handleUpdateAlert:()=>{
+        set({updateAlert:true});
+        setTimeout(() => {
+            set({ updateAlert: false });
           }, 3000);
     },
     searchQuery:"",

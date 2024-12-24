@@ -4,6 +4,7 @@ import { useStore } from '../../store';
 import { useEffect, useState } from 'react';
 import { dateConversion } from '@/app/helper/dateConversion';
 import { fetchCohort, fetchCohortById, fetchSubjectsById } from '@/app/helper/processor';
+import Alert from '@/app/components/alert/alert';
 
 export default function UpdateStudent({params}){
     const date = Date()
@@ -25,6 +26,7 @@ export default function UpdateStudent({params}){
     const handleStudentDeleted = useStore((state)=>state.handleStudentDeleted);
     const studentData = useStore((state)=>state.studentData);
     const isPhone = useStore((state)=>state.isPhone);
+    const handleUpdateAlert = useStore((state)=>state.handleUpdateAlert);
 
   // onChange handlers
   const handleStudentNameChange = (e) => setStudentName(e.target.value);
@@ -49,10 +51,10 @@ export default function UpdateStudent({params}){
           return;
         }
         const originalData = studentData.find(student=>student.studentId==id.studentId);
-        console.log(originalData)
         if(originalData){
           if(originalData.studentName==studentName && originalData.cohortId==cohortId && originalData.courseId==courseId && originalData.status==status ){
             setUpdateLoading(false);
+            handleUpdateAlert()
             return;
             
           }
@@ -158,6 +160,7 @@ export default function UpdateStudent({params}){
 
     return(
       <div className="text-black p-2">
+        <Alert/>
       <div className="font-semibold text-[24px]">Add new student</div>
       <hr className="border-1 border-tableBorderColor" />
       <div className="grid mt-5 grid-cols-1 gap-5 screen-1024:grid-cols-3 screen-1280:grid-cols-3">

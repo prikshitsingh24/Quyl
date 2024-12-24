@@ -139,6 +139,7 @@ export default function Dashboard(){
    else{
     return(
         <div className={`h-screen w-full overflow-hidden bg-background grid grid-cols-[1fr_6fr] gap-2 text-black`}>
+
         <Sidebar/>
        <div className="flex flex-col">
          <div className="h-[48px] w-full mt-5 flex flex-row justify-between">
