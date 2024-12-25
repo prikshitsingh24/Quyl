@@ -102,7 +102,7 @@ export default function Dashboard(){
          </div>
           <div className=" w-full h-full mr-2 flex flex-row items-center bg-foreground rounded-[12px]">
            <Image src={"/search.png"} className="ml-2" width={18} height={18}  alt="searchIcon"></Image>
-           <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2"/>
+           <input type="text" placeholder="Search your course" className="w-full h-full rounded-[12px] outline-none p-2" onChange={handleSearchChange}/>
           </div>
            <Image src={"/userPic.png"} className="mr-2" alt="userPicIcon" width={80} height={48} ></Image>
         </div>
